@@ -1,6 +1,41 @@
-A=0.8; %amplitudinea
+% semnal redresat mono alternanta pentru rezolutie temporara de 2ms
 T=3;
-F=1/T;
-t=0:0.002:3;   %timpul de la 0 la 3 secunde cu rezolutie temporara de 2 ms
-s=A*sin(2*pi*F*t);    %sintaxa sin deseneaza un grafic sinusoidal cu amplitudinea A, perioada t si frecventa F
-plot(t,s,'.-'),xlabel('Timp[s]'),ylabel('Amplitudine'),title('Sine Periodic Wave'),grid;
+t=0:0.002:4*T; % t porneste de la valoarea initiala 0,cu pasul de 0.002, afisand in final 4 perioade 
+f=1/T; %frecventa
+w=2*pi*f;
+A=0.8; %amplitudinea semnalului neredresat
+a=A/2; %amplitudinea semnalului redresat
+s=a*(sin(w*t)+abs(sin(w*t)));
+subplot(3,1,1) %este afisat in prima treime
+plot(t,s)
+%trasare grafic pentru s in functie de t 
+xlabel('t[s]')
+%textul devine eticheta pt abscisa
+ylabel('A[V]')
+%textul devine eticheta pt ordonata
+title( 'semnal sinusoidal rma cu rezolutie de 2ms'),grid;
+
+% semnal sinusoidal redresat mono alternanta cu rezolutie temporara de 20ms
+T=3;
+t=0:0.02:4*T; % t porneste de la valoarea initiala 0,cu pasul de 0.02, afisand in final 4 perioade
+f=1/T;
+w=2*pi*f;
+A=0.8; 
+a=A/2; 
+s=a*(sin(w*t)+abs(sin(w*t)));
+subplot(3,1,2) %este afisat in a doua treime
+plot(t,s),xlabel('t[s]'),ylabel('A[V]'),title( 'semnal sinusoidal rma cu rezolutie de 20ms'),grid;
+
+% semnal redresat mono alternanta cu rezolutie temporara de 200ms
+T=3;
+t=0:0.2:4*T; % t porneste de la valoarea initiala 0,cu pasul de 0.2, afisand in final 4 perioade
+f=1/T; 
+w=2*pi*f;
+A=0.8;
+a=A/2; 
+s=a*(sin(w*t)+abs(sin(w*t)));
+subplot(3,1,3) %este afisat in a treia treime
+plot(t,s),xlabel('t[s]'),ylabel('A[V]'),title( 'semnal sinusoidal rma cu rezolutie de 200ms'),grid;
+
+%pentru valoarea medie absoluta a tensiunii redresate u(t)=A*(u(t)+|u(t)|), iar cum semnalul este sinusoidal u(t)= sin(2*pi*f*t)=sin(w*t)
+%portiunile negative ale semnalului sunt eliminate
