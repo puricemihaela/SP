@@ -1,0 +1,9 @@
+function ex2()
+f = 2000;
+t = 0:1/f:100;
+x = sawtooth(0.4*pi*t, 0.5); %semnal triunghiular
+plot(t,x);
+xlabel('Time (sec)')
+ylabel('Amplitude')
+title('Triangular')
+end
